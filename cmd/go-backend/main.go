@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"go/backend/internal/routes"
+	_ "go/backend/migrations"
 	"net/http"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -12,8 +15,8 @@ func main() {
 	port := 8080
 	addr := fmt.Sprintf(":%d", port)
 	fmt.Printf("Server listening on http://localhost%s\n", addr)
-	err := http.ListenAndServe(addr, router)
-	if err != nil {
-		panic(err)
+	httpErr := http.ListenAndServe(addr, router)
+	if httpErr != nil {
+		panic(httpErr)
 	}
 }

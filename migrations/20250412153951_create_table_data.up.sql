@@ -1,0 +1,7 @@
+CREATE TABLE data (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    value TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);

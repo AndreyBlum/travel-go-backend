@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go/backend/internal/routes"
-	_ "go/backend/migrations"
 	"net/http"
 
 	_ "github.com/lib/pq"

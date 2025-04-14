@@ -20,7 +20,8 @@
 			"username": "root"
 		},
 		"ghcr.io/guiyomh/features/golangci-lint:0": {}
-	}
+	},
+	"postCreateCommand": "createdb && migrate -path migrations -database $DB_URL up"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

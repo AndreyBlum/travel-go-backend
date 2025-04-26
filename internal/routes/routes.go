@@ -1,23 +1,17 @@
 package routes
 
 import (
-	"fmt"
-	"net/http"
+	"travel-go/backend/db"
+	"travel-go/backend/internal/travel/handler"
+
+	"github.com/gorilla/mux"
 )
 
-func NewRouter() http.Handler {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", indexHandler)
-	mux.HandleFunc("/api/data", apiDataHandler)
-
-	return mux
-}
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome to the webpage!")
-}
-
-func apiDataHandler(w http.ResponseWriter, r *http.Request) {
-	data := "Data from API"
-	fmt.Fprint(w, data)
+func NewRouter() *mux.Router {
+	gorila := mux.NewRouter()
+	conn := db.InitDB()
+	travel_handler := handler.NewTravelHandler(conn)
+	gorila.HandleFunc("/travel", travel_handler.CreateTravel).Methods("POST")
+	gorila.HandleFunc("/travels", travel_handler.GetAllTravels).Methods("GET")
+	return gorila
 }

@@ -1,0 +1,5 @@
+prepare-commit-msg:
+  commands:
+    run-cz:
+      interactive: true
+      run: npx cz --hook || true
